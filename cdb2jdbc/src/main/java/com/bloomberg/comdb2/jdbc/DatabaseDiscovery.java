@@ -13,6 +13,7 @@
    limitations under the License. */
 package com.bloomberg.comdb2.jdbc;
 
+import io.github.pixee.security.BoundedLineReader;
 import java.io.*;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
@@ -68,7 +69,7 @@ public class DatabaseDiscovery {
             br = new BufferedReader(new FileReader(path));
 
             String line;
-            while ((line = br.readLine()) != null) {
+            while ((line = BoundedLineReader.readLine(br, 5_000_000)) != null) {
 
                 String[] tokens = line.split(":\\s*|=\\s*|,\\s*|\\s+");
 
