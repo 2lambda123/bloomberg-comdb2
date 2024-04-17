@@ -106,29 +106,29 @@ public class Comdb2DatabaseMetaDataResultSet implements ResultSet {
     private int convertSqlType(ResultSet rs) throws SQLException {
         String type = rs.getString("sqltype");
 
-        if (type.equalsIgnoreCase("int"))
+        if ("int".equalsIgnoreCase(type))
             return java.sql.Types.INTEGER;
-        if (type.equalsIgnoreCase("smallint"))
+        if ("smallint".equalsIgnoreCase(type))
             return java.sql.Types.SMALLINT;
-        if (type.equalsIgnoreCase("largeint"))
+        if ("largeint".equalsIgnoreCase(type))
             return java.sql.Types.BIGINT;
-        if (type.equalsIgnoreCase("smallfloat"))
+        if ("smallfloat".equalsIgnoreCase(type))
             return java.sql.Types.FLOAT;
-        if (type.equalsIgnoreCase("float"))
+        if ("float".equalsIgnoreCase(type))
             return java.sql.Types.DOUBLE;
-        if (type.equalsIgnoreCase("double"))
+        if ("double".equalsIgnoreCase(type))
             return java.sql.Types.DOUBLE;
-        if (type.equalsIgnoreCase("real"))
+        if ("real".equalsIgnoreCase(type))
             return java.sql.Types.DOUBLE;
         if (type.startsWith("char"))
             return java.sql.Types.VARCHAR;
         if (type.startsWith("blob"))
             return java.sql.Types.BLOB;
-        if (type.equalsIgnoreCase("varchar"))
+        if ("varchar".equalsIgnoreCase(type))
             return java.sql.Types.VARCHAR;
         if (type.startsWith("datetime"))
             return java.sql.Types.TIMESTAMP;
-        if (type.equalsIgnoreCase("decimal"))
+        if ("decimal".equalsIgnoreCase(type))
             return java.sql.Types.DECIMAL;
         if (type.startsWith("interval"))
             return java.sql.Types.JAVA_OBJECT;
@@ -137,9 +137,9 @@ public class Comdb2DatabaseMetaDataResultSet implements ResultSet {
 
     @Override
     public int getInt(int columnIndex) throws SQLException {
-        if (md.getColumnName(columnIndex).equalsIgnoreCase("DATA_TYPE"))
+        if ("DATA_TYPE".equalsIgnoreCase(md.getColumnName(columnIndex)))
             return convertSqlType(rs);
-        if (md.getColumnName(columnIndex).equalsIgnoreCase("ORDINAL_POSITION"))
+        if ("ORDINAL_POSITION".equalsIgnoreCase(md.getColumnName(columnIndex)))
             return ord_pos;
         return rs.getInt(columnIndex);
     }
@@ -222,9 +222,9 @@ public class Comdb2DatabaseMetaDataResultSet implements ResultSet {
 
     @Override
     public int getInt(String columnLabel) throws SQLException {
-        if (columnLabel.equalsIgnoreCase("DATA_TYPE"))
+        if ("DATA_TYPE".equalsIgnoreCase(columnLabel))
             return convertSqlType(rs);
-        if (columnLabel.equalsIgnoreCase("ORDINAL_POSITION"))
+        if ("ORDINAL_POSITION".equalsIgnoreCase(columnLabel))
             return ord_pos;
         return rs.getInt(columnLabel);
     }
@@ -307,18 +307,18 @@ public class Comdb2DatabaseMetaDataResultSet implements ResultSet {
 
     @Override
     public Object getObject(int columnIndex) throws SQLException {
-        if (md.getColumnName(columnIndex).equalsIgnoreCase("DATA_TYPE"))
+        if ("DATA_TYPE".equalsIgnoreCase(md.getColumnName(columnIndex)))
             return (Integer)convertSqlType(rs);
-        if (md.getColumnName(columnIndex).equalsIgnoreCase("ORDINAL_POSITION"))
+        if ("ORDINAL_POSITION".equalsIgnoreCase(md.getColumnName(columnIndex)))
             return (Integer)ord_pos;
         return rs.getObject(columnIndex);
     }
 
     @Override
     public Object getObject(String columnLabel) throws SQLException {
-        if (columnLabel.equalsIgnoreCase("DATA_TYPE"))
+        if ("DATA_TYPE".equalsIgnoreCase(columnLabel))
             return convertSqlType(rs);
-        if (columnLabel.equalsIgnoreCase("ORDINAL_POSITION"))
+        if ("ORDINAL_POSITION".equalsIgnoreCase(columnLabel))
             return ord_pos;
         return rs.getObject(columnLabel);
     }

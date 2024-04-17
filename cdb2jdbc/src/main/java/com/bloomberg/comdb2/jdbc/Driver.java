@@ -256,7 +256,7 @@ public class Driver implements java.sql.Driver {
                     if (keyval.length != 2)
                         continue;
 
-                    if (keyval[0].equalsIgnoreCase("addons")) {
+                    if ("addons".equalsIgnoreCase(keyval[0])) {
                         String[] addons = keyval[1].split(",");
                         for (String addon : addons) {
                             try {

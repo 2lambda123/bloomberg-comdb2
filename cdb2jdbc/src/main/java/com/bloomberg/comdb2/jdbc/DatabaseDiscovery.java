@@ -84,33 +84,33 @@ public class DatabaseDiscovery {
                         hndl.myDbHosts.add(tokens[i]);
                         hndl.myDbPorts.add(hndl.overriddenPort);
                     }
-                } else if (tokens[0].equalsIgnoreCase("comdb2_config")) {
+                } else if ("comdb2_config".equalsIgnoreCase(tokens[0])) {
 
-                    if (tokens[1].equalsIgnoreCase("default_type")
+                    if ("default_type".equalsIgnoreCase(tokens[1])
                             && hndl.defaultType == null)
                         hndl.defaultType = tokens[2];
-                    else if (tokens[1].equalsIgnoreCase("room")
+                    else if ("room".equalsIgnoreCase(tokens[1])
                             && hndl.machineRoom == null)
                         hndl.machineRoom = tokens[2];
-                    else if ((tokens[1].equalsIgnoreCase("portmuxport") ||
-                              tokens[1].equalsIgnoreCase("pmuxport")) &&
+                    else if (("portmuxport".equalsIgnoreCase(tokens[1]) ||
+                              "pmuxport".equalsIgnoreCase(tokens[1])) &&
                              !hndl.hasUserPort)
                         hndl.portMuxPort = Integer.parseInt(tokens[2]);
-                    else if (tokens[1].equalsIgnoreCase("comdb2dbname")
+                    else if ("comdb2dbname".equalsIgnoreCase(tokens[1])
                             && hndl.comdb2dbName == null)
                         hndl.comdb2dbName = tokens[2];
-                    else if (tokens[1].equalsIgnoreCase("tcpbufsz")
+                    else if ("tcpbufsz".equalsIgnoreCase(tokens[1])
                             && !hndl.hasUserTcpSz)
                         try {
                             hndl.tcpbufsz = Integer.parseInt(tokens[2]);
                         } catch (NumberFormatException e) {
                             logger.log(Level.WARNING, "Invalid tcp buffer size.", e);
                         }
-                    else if ((tokens[1].equalsIgnoreCase("dnssufix") ||
-                                tokens[1].equalsIgnoreCase("dnssuffix"))
+                    else if (("dnssufix".equalsIgnoreCase(tokens[1]) ||
+                                "dnssuffix".equalsIgnoreCase(tokens[1]))
                             && hndl.dnssuffix == null)
                         hndl.dnssuffix = tokens[2];
-                    else if (tokens[1].equalsIgnoreCase("connect_timeout")
+                    else if ("connect_timeout".equalsIgnoreCase(tokens[1])
                             && !hndl.hasConnectTimeout) {
                         try {
                             hndl.connectTimeout = Integer.parseInt(tokens[2]);
@@ -118,7 +118,7 @@ public class DatabaseDiscovery {
                             logger.log(Level.WARNING, "Invalid connect timeout.", e);
                         }
                     }
-                    else if (tokens[1].equalsIgnoreCase("comdb2db_timeout")
+                    else if ("comdb2db_timeout".equalsIgnoreCase(tokens[1])
                             && !hndl.hasComdb2dbTimeout) {
                         try {
                             hndl.comdb2dbTimeout = Integer.parseInt(tokens[2]);
@@ -126,9 +126,9 @@ public class DatabaseDiscovery {
                             logger.log(Level.WARNING, "Invalid comdb2db timeout.", e);
                         }
                     }
-                    else if (tokens[1].equalsIgnoreCase("stack_at_open")
+                    else if ("stack_at_open".equalsIgnoreCase(tokens[1])
                             && !hndl.hasSendStack) {
-                        hndl.sendStack = tokens[2].equalsIgnoreCase("true");
+                        hndl.sendStack = "true".equalsIgnoreCase(tokens[2]);
                     }
                 } else if (tokens[0].equalsIgnoreCase(hndl.comdb2dbName)) {
                     /**

@@ -215,7 +215,7 @@ public class Comdb2Handle extends AbstractConnection {
          * export CDB2JDBC_STATEMENT_QUERYEFFECTS=0 -> disable
          */
         String queryeffectsEnv = System.getenv("CDB2JDBC_STATEMENT_QUERYEFFECTS");
-        setStatementQueryEffects((queryeffectsEnv == null || !queryeffectsEnv.equals("0")));
+        setStatementQueryEffects((queryeffectsEnv == null || !"0".equals(queryeffectsEnv)));
 
         /*
          * default                        -> enable
@@ -224,7 +224,7 @@ public class Comdb2Handle extends AbstractConnection {
          * export CDB2JDBC_VERIFY_RETRY=0 -> disable
          */
         String verifyRetryEnv = System.getenv("CDB2JDBC_VERIFY_RETRY");
-        setVerifyRetry((verifyRetryEnv == null || !verifyRetryEnv.equals("0")));
+        setVerifyRetry((verifyRetryEnv == null || !"0".equals(verifyRetryEnv)));
 
         String userEnv = System.getenv("COMDB2_USER");
         if (userEnv != null) {
@@ -893,11 +893,11 @@ public class Comdb2Handle extends AbstractConnection {
             return false;
 
         // Debug
-        if (tokens[1].equals("debug")) {
+        if ("debug".equals(tokens[1])) {
             if (tokens.length == 3) {
-                if (    tokens[2].equals("on") || 
-                        tokens[2].equals("true") || 
-                        tokens[2].equals("yes")) {
+                if (    "on".equals(tokens[2]) || 
+                        "true".equals(tokens[2]) || 
+                        "yes".equals(tokens[2])) {
                     setDebug(true);
                 } else {
                     setDebug(false);
@@ -907,7 +907,7 @@ public class Comdb2Handle extends AbstractConnection {
         }
 
         // max_retries
-        if (tokens[1].equals("max_retries")) {
+        if ("max_retries".equals(tokens[1])) {
             if (tokens.length == 3) {
                 int max = Integer.parseInt(tokens[2]);
                 setMaxRetries(max);
@@ -917,42 +917,42 @@ public class Comdb2Handle extends AbstractConnection {
 
         // ssl
         boolean sslChanged = false;
-        if (tokens[1].equals("ssl_mode")) {
+        if ("ssl_mode".equals(tokens[1])) {
             if (tokens.length < 3)
                 return false;
             setSSLMode(tokens[2]);
             sslChanged = true;
-        } else if (tokens[1].equals("key_store")) {
+        } else if ("key_store".equals(tokens[1])) {
             if (tokens.length < 3)
                 return false;
             setSSLCrt(tokens[2]);
             sslChanged = true;
-        } else if (tokens[1].equals("key_store_password")) {
+        } else if ("key_store_password".equals(tokens[1])) {
             if (tokens.length < 3)
                 return false;
             setSSLCrtPass(tokens[2]);
             sslChanged = true;
-        } else if (tokens[1].equals("key_store_type")) {
+        } else if ("key_store_type".equals(tokens[1])) {
             if (tokens.length < 3)
                 return false;
             setSSLCrtType(tokens[2]);
             sslChanged = true;
-        } else if (tokens[1].equals("trust_store")) {
+        } else if ("trust_store".equals(tokens[1])) {
             if (tokens.length < 3)
                 return false;
             setSSLCA(tokens[2]);
             sslChanged = true;
-        } else if (tokens[1].equals("trust_store_password")) {
+        } else if ("trust_store_password".equals(tokens[1])) {
             if (tokens.length < 3)
                 return false;
             setSSLCAPass(tokens[2]);
             sslChanged = true;
-        } else if (tokens[1].equals("trust_store_type")) {
+        } else if ("trust_store_type".equals(tokens[1])) {
             if (tokens.length < 3)
                 return false;
             setSSLCAType(tokens[2]);
             sslChanged = true;
-        } else if (tokens[1].equals("crl")) {
+        } else if ("crl".equals(tokens[1])) {
             if (tokens.length < 3)
                 return false;
             setSSLCRL(tokens[2]);
@@ -1000,7 +1000,7 @@ public class Comdb2Handle extends AbstractConnection {
                 String hasql[] = lowerSql.split("hasql");
                 if (hasql.length == 2) {
                     String ignoreSpace = hasql[1].replaceAll(" ","");
-                    if (ignoreSpace.equals("on")) {
+                    if ("on".equals(ignoreSpace)) {
                         tdlog(Level.FINEST, "Set isHASql to true");
                         isHASql = true;
                     }
